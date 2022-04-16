@@ -2,7 +2,7 @@ import os
 import csv
 
 csvpath = os.path.join('C:\\Users\\User\\Desktop\\git-repos\\python-challenge\\PyBank\\Resources\\budget_data.csv')
-
+txtpath = os.path.join('C:\\Users\\User\\Desktop\\git-repos\\python-challenge\\PyBank\\Analysis\\Analysis.txt')
 
 total_months = 0
 total_profit_loss = 0
@@ -44,11 +44,20 @@ with open(csvpath) as csvfile:
    greatestDecrease_month=profit_loss_change_list.index(greatestDecrease)+1
    greatestIncrease_month=profit_loss_change_list.index(greatestIncrease)+1
 
-# Print Financial Analysis
-   print("Financial Analysis")
-   print("--------------------------------")
-   print(f"Total Months: {total_months}")
-   print(f"Total Profit/Losess: ${total_profit_loss}")
-   print(f"Average Change: ${round(sum(profit_loss_change_list)/len(profit_loss_change_list),2)}")
-   print(f"Greatest increase in Profits: {month_change[greatestIncrease_month]} (${(str(greatestIncrease))})")
-   print(f"Greatest decrease in Profits: {month_change[greatestDecrease_month]} (${(str(greatestDecrease))})")
+# Financial Analysis Summary
+summary = (
+   f"\nFinancial Analysis\n"
+   f"--------------------------------\n"
+   f"Total Months: {total_months}\n"
+   f"Total Profit/Losess: ${total_profit_loss}\n"
+   f"Average Change: ${round(sum(profit_loss_change_list)/len(profit_loss_change_list),2)}\n"
+   f"Greatest increase in Profits: {month_change[greatestIncrease_month]} (${(str(greatestIncrease))})\n"
+   f"Greatest decrease in Profits: {month_change[greatestDecrease_month]} (${(str(greatestDecrease))})\n"
+)
+
+# Print Financial Analysis Summary
+print(summary)
+
+# Export Analysis to text file
+with open(txtpath, "w") as txt_file:
+    txt_file.write(summary)
