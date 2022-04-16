@@ -8,7 +8,7 @@ txtpath = os.path.join('C:\\Users\\User\\Desktop\\git-repos\\python-challenge\\P
 total_votes = 0
 candidate_list = []
 candidate_votes = {}
-winning_candidate = ""
+winner = ""
 winning_count = 0
 
 
@@ -30,7 +30,7 @@ with open(csvpath) as csvfile:
        candidate_votes[candidate_nm] = candidate_votes[candidate_nm] + 1
 
 # Print and write Total Vote results
-with open(txtpath), "w" as txt_file:
+with open(txtpath, "w") as txt_file:
 
     vote_results = (
         f"\n\nElection Results\n"
@@ -39,7 +39,7 @@ with open(txtpath), "w" as txt_file:
         f"---------------------------\n"
     )
     print(vote_results)
-    #txt_file.write(vote_results)
+    txt_file.write(vote_results)
 
     # Loop through voter data to determine the winner
     for candidate in candidate_votes:
@@ -49,19 +49,18 @@ with open(txtpath), "w" as txt_file:
         # Identify winner
         if (votes > winning_count):
             winning_count = votes
-            winning_candidate = candidate
+            winner = candidate
 
-        # Print and write Candidate results
+        # Print and write candidate results
         candidate_results = (f"{candidate}: {vote_percent:.3f}% ({votes})\n")
         print(candidate_results)
-        #txt_file.write(candidate_results)
-
-
-# Export Results to text file
-#with open(txtpath, "w") as txt_file:
-#    txt_file.write(results)
-
-
-
-
-           
+        txt_file.write(candidate_results)
+    
+    # Print  and write winner
+    winner_result = (
+        f"---------------------------\n"
+        f"Total Votes: {winner}\n"
+        f"---------------------------\n"    
+    )
+    print(winner_result)
+    txt_file.write(winner_result)         
