@@ -39,10 +39,10 @@ with open(csvpath) as csvfile:
        previous_profit_loss = int(row["Profit/Losses"])
        month_change = month_change + [row["Date"]]
       
-   greatestDecrease=min(profit_loss_change_list)
-   greatestIncrease=max(profit_loss_change_list)
-   greatestDecrease_month=profit_loss_change_list.index(greatestDecrease)+1
-   greatestIncrease_month=profit_loss_change_list.index(greatestIncrease)+1
+   greatest_decrease=min(profit_loss_change_list)
+   greatest_increase=max(profit_loss_change_list)
+   greatest_decrease_month=profit_loss_change_list.index(greatest_decrease)+1
+   greatest_increase_month=profit_loss_change_list.index(greatest_increase)+1
 
 # Financial Analysis Summary
 summary = (
@@ -51,8 +51,8 @@ summary = (
    f"Total Months: {total_months}\n"
    f"Total Profit/Losess: ${total_profit_loss}\n"
    f"Average Change: ${round(sum(profit_loss_change_list)/len(profit_loss_change_list),2)}\n"
-   f"Greatest increase in Profits: {month_change[greatestIncrease_month]} (${(str(greatestIncrease))})\n"
-   f"Greatest decrease in Profits: {month_change[greatestDecrease_month]} (${(str(greatestDecrease))})\n"
+   f"Greatest increase in Profits: {month_change[greatest_increase_month]} (${(str(greatest_increase))})\n"
+   f"Greatest decrease in Profits: {month_change[greatest_decrease_month]} (${(str(greatest_decrease))})\n"
 )
 
 # Print Financial Analysis Summary
